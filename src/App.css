@@ -1,0 +1,10 @@
+body::-webkit-scrollbar,
+.Home::-webkit-scrollbar {
+    display: none;
+}
+
+body,
+.Home {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
