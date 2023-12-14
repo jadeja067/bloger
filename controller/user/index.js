@@ -2,9 +2,8 @@ const model = require("../../schema/user");
 const userschema = model.Users;
 
 exports.login = async (req, res) => {
-  const data = JSON.parse(req.rawHeaders[1])
   try {
-    const user = await userschema.findOne(data);
+    const user = await userschema.findOne(req.body);
     if(user) res.json(1)
     else res.json(0)
   } catch (e){

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const user = require("../../controller/user");
 router
-  .get("/login", user.login)
+  .post("/login", user.login)
   .get("/", user.getAllItems)
   .get("/:id", user.getOneItem)
   .post("/", user.createItem)
