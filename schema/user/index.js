@@ -4,16 +4,16 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
   unm: {
     type: String,
-    require: true,
+    required: true,
     unique: true
   },  
   email: {
     type: String,
-    require: true,
+    required: true,
   }, 
   password: {
     type: String,
-    require: true,
+    required: true,
   }
 });
 exports.Users = mongoose.model("Users", UserSchema);
