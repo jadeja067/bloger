@@ -26,7 +26,10 @@ exports.create = async (req, res) => {
   try {
   const blog = new blogschema(req.body);
   await blog.save()
-  res.status(200).json(req.body)
+  res.status(200).json({
+    status: "Success",
+    message: "Record Successfully Created."
+  })
 } catch(e){
   res.json(e)
 }
@@ -37,7 +40,10 @@ exports.updateItem = async (req, res) => {
   try {
     const blog = await blogschema.findById(id);
     await blog.updateOne(req.body)
-    res.json(blog);
+    res.json({
+      status: "Success",
+      message: "Record Successfully Updated."
+    }).status(200)
   } catch (e) {
     res.json(e);
   }
@@ -50,7 +56,10 @@ exports.DeleteItem = async (req, res) => {
   try {
     const blog = await blogschema.findById(id);
     await blog.deleteOne()
-    res.status(200).json(blog);
+    res.status(200).json({
+      status: "Success",
+      message: "Record Successfully Deleted."
+    });
   } catch (e) {
     res.status(e);
   }

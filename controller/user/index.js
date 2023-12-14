@@ -1,6 +1,17 @@
 const model = require("../../schema/user");
 const userschema = model.Users;
 
+exports.login = async (req, res) => {
+  const data = JSON.parse(req.rawHeaders[1])
+  try {
+    const user = await userschema.findOne(data);
+    if(user) res.json(1)
+    else res.json(0)
+  } catch (e){
+    res.status(e);
+  }
+};
+
 exports.getAllItems = async (req, res) => {
   try {
     const users = await userschema.find();
@@ -22,10 +33,12 @@ exports.getOneItem = async (req, res) => {
 
 exports.createItem = async (req, res) => {
   try {
-    console.log(25,req.body);
     const user = new userschema(req.body);
     await user.save();
-    res.json(user);
+    res.json({
+      status: "Success",
+      message: "Record Successfully Created."
+    }).status(200)
   } catch (e) {
     res.json(e);
   }
@@ -36,7 +49,10 @@ exports.updateItem = async (req, res) => {
   try {
     let user = await userschema.findById(id);
     await user.updateOne(req.body);
-    res.json(req.body);
+    res.json({
+      status: "Success",
+      message: "Record Successfully Updated."
+    }).status(200)
   } catch (e) {
     res.json(e);
   }
@@ -47,7 +63,10 @@ exports.DeleteItem = async (req, res) => {
   try {
     const user = await userschema.findById(id);
     await user.deleteOne();
-    res.status(200).json("Record Deleted.");
+    res.status(200).json({
+      status: "Success",
+      message: "Record Successfully Deleted."
+    });
   } catch (e) {
     res.status(e);
   }
