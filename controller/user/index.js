@@ -22,8 +22,9 @@ exports.getAllItems = async (req, res) => {
 
 exports.getOneItem = async (req, res) => {
   const id = req.params.id;
+  console.log(id)
   try {
-    const user = await userschema.findById(id);
+    const user = await userschema.findOne({username: id});
     res.json(user).status(200);
   } catch (e) {
     res.status(e);
@@ -46,7 +47,7 @@ exports.createItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   const id = req.params.id;
   try {
-    let user = await userschema.findById(id);
+    let user = await userschema.findOne({username: id});
     await user.updateOne(req.body);
     res.json({
       status: "Success",
@@ -60,7 +61,7 @@ exports.updateItem = async (req, res) => {
 exports.DeleteItem = async (req, res) => {
   const id = req.params.id;
   try {
-    const user = await userschema.findById(id);
+    const user = await userschema.findOne({username: id});
     await user.deleteOne();
     res.status(200).json({
       status: "Success",
