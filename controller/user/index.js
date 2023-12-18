@@ -21,10 +21,16 @@ exports.getAllItems = async (req, res) => {
 };
 
 exports.getOneItem = async (req, res) => {
+<<<<<<< HEAD
   const id = req.params.id;
   console.log(id)
   try {
     const user = await userschema.findOne({username: id});
+=======
+  const id = req.params.username;
+  try {
+    const user = await userschema.findOne(id);
+>>>>>>> 54b369e53c7ac0be34777b74bea985fee0df8960
     res.json(user).status(200);
   } catch (e) {
     res.status(e);
@@ -45,7 +51,7 @@ exports.createItem = async (req, res) => {
 };
 
 exports.updateItem = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.username;
   try {
     let user = await userschema.findOne({username: id});
     await user.updateOne(req.body);
@@ -59,7 +65,7 @@ exports.updateItem = async (req, res) => {
 };
 
 exports.DeleteItem = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.username;
   try {
     const user = await userschema.findOne({username: id});
     await user.deleteOne();
