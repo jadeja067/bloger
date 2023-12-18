@@ -23,7 +23,7 @@ exports.getAllItems = async (req, res) => {
 exports.getOneItem = async (req, res) => {
 <<<<<<< HEAD
   const id = req.params.id;
-  console.log(id)
+
   try {
     const user = await userschema.findOne({username: id});
 =======
