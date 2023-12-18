@@ -45,7 +45,7 @@ exports.createItem = async (req, res) => {
 };
 
 exports.updateItem = async (req, res) => {
-  const id = req.params.username;
+  const id = req.params.id;
   try {
     let user = await userschema.findOne({username: id});
     await user.updateOne(req.body);
@@ -59,7 +59,7 @@ exports.updateItem = async (req, res) => {
 };
 
 exports.DeleteItem = async (req, res) => {
-  const id = req.params.username;
+  const id = req.params.id;
   try {
     const user = await userschema.findOne({username: id});
     await user.deleteOne();
