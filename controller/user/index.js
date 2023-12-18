@@ -33,7 +33,7 @@ exports.getOneItem = async (req, res) => {
 exports.createItem = async (req, res) => {
   try {
     const user = new userschema(req.body);
-    await user.save();
+    user.save();
     res.json({
       status: "Success",
       message: "Record Successfully Created."
