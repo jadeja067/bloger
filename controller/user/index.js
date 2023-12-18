@@ -24,7 +24,7 @@ exports.getOneItem = async (req, res) => {
   const id = req.params.id;
   console.log(id)
   try {
-    const user = await userschema.findOne({username: id});
+    const user = await userschema.findOne({_id: id});
     res.json(user).status(200);
   } catch (e) {
     res.status(e);
