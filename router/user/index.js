@@ -4,9 +4,9 @@ const user = require("../../controller/user");
 router
   .post("/login", user.login)
   .get("/", user.getAllItems)
-  .get("/:id", user.getOneItem)
+  .get("/:username", user.getOneItem)
   .post("/", user.createItem)
-  .patch("/:id", user.updateItem)
-  .delete("/:id", user.DeleteItem);
+  .patch("/:username", user.updateItem)
+  .delete("/:username", user.DeleteItem);
 
 exports.router = router;

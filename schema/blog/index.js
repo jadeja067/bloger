@@ -10,6 +10,10 @@ const BlogSchema = new Schema({
     type: String,
     required: true
   },
+  date:{
+    type: Date,
+    default: new Date(),
+  },
   uid: {
     type: String,
     required: true

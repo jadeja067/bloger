@@ -4,7 +4,7 @@ const userschema = model.Users;
 exports.login = async (req, res) => {
   try {
     const user = await userschema.findOne(req.body);
-    if(user) res.json(1)
+    if(user) res.json(user.username)
     else res.json(0)
   } catch (e){
     res.status(e);
@@ -21,9 +21,9 @@ exports.getAllItems = async (req, res) => {
 };
 
 exports.getOneItem = async (req, res) => {
-  const id = req.originalUrl.split('/')[2];
+  const username = req.params.username;
   try {
-    const user = await userschema.findOne({username: id});
+    const user = await userschema.findOne({username: username});
     res.json(user).status(200);
   } catch (e) {
     res.status(e);
@@ -44,9 +44,9 @@ exports.createItem = async (req, res) => {
 };
 
 exports.updateItem = async (req, res) => {
-  const id = req.originalUrl.split('/')[2];
+  const username = req.params.username;
   try {
-    let user = await userschema.findOne({username: id});
+    let user = await userschema.findOne({username: username});
     await user.updateOne(req.body);
     res.json({
       status: "Success",
@@ -58,9 +58,9 @@ exports.updateItem = async (req, res) => {
 };
 
 exports.DeleteItem = async (req, res) => {
-  const id = req.originalUrl.split('/')[2];
+  const username = req.params.username;
   try {
-    const user = await userschema.findOne({username: id});
+    const user = await userschema.findOne({username: username});
     await user.deleteOne();
     res.status(200).json({
       status: "Success",
