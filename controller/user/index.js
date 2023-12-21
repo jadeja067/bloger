@@ -4,7 +4,7 @@ const userschema = model.Users;
 exports.login = async (req, res) => {
   try {
     const user = await userschema.findOne(req.body);
-    if(user) res.json(user.username)
+    if(user) res.json(1)
     else res.json(0)
   } catch (e){
     res.status(e);
