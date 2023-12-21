@@ -10,7 +10,8 @@ exports.getAll = async (req, res) => {
   }
 }
 exports.getUserAllblogs = async (req, res) => {
-  const uid = req.params.uid;
+  const uid = req.params.id;
+  console.log(uid)
   try {
     const blogs = await blogschema.find({uid : uid});
     res.status(200).json(blogs);
