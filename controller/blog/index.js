@@ -9,7 +9,15 @@ exports.getAll = async (req, res) => {
     res.status(e);
   }
 }
-
+exports.getUserAllblogs = async (req, res) => {
+  const uid = req.params.uid;
+  try {
+    const blogs = await blogschema.find({uid : uid});
+    res.status(200).json(blogs);
+  } catch (e) {
+    res.status(e);
+  }
+}
 exports.getOne = async (req, res) => {
   const id = req.params.id;
   try {
