@@ -2,18 +2,20 @@ const model = require("../../schema/blog");
 const blogschema = model.blogschema;
 
 exports.getAll = async (req, res) => {
+  const page = parseInt(req.query.page) || 0, bunch = 10
   try {
-    const blogs = await blogschema.find();
+    const blogs = await blogschema.find().skip(page * bunch).limit(10);
     res.status(200).json(blogs);
   } catch (e) {
     res.status(e);
   }
 }
 exports.getUserAllblogs = async (req, res) => {
+  const page = parseInt(req.query.page) || 0, bunch = 10
   const Uid = req.params.id;
   console.log(uid)
   try {
-    const blogs = await blogschema.find({uid : Uid});
+    const blogs = await blogschema.find({uid : Uid}).skip(page * bunch).limit(10);
     res.status(200).json(blogs);
   } catch (e) {
     res.status(e);

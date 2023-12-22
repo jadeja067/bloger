@@ -12,8 +12,9 @@ exports.login = async (req, res) => {
 };
 
 exports.getAllItems = async (req, res) => {
+  const page = parseInt(req.query.page) || 0, bunch = 10
   try {
-    const users = await userschema.find();
+    const users = await userschema.find().skip(page * bunch).limit(10);
     res.json(users).status(200);
   } catch (e) {
     res.status(e);
